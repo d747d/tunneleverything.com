@@ -7,7 +7,7 @@ taxonomies = [
     {name = "tags", feed = true},
     {name = "tunneling", feed = true},
 ]
-
+after_dark_title = "Tunnel Blog"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
