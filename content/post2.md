@@ -10,8 +10,7 @@ One of the first and most common times I need to tunnel traffic is for viewing a
 
 The first thing you'll need is a way to proxy the browser traffic to a different local port. For this I use [FoxyProxy](https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/) (since I am a Firefox user for now).
 
-![FoxyProxy Configuration Screenshot](./content/images/foxyproxyconfiguration.png)
-
+<img src="foxyproxyconfiguration.png" alt="Foxy Proxy Configuration Screenshot" style="width:100%;height:100;">
 
 <script data-goatcounter="https://tunneleverything.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>
