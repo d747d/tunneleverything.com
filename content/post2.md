@@ -10,7 +10,7 @@ One of the first and most common times I need to tunnel traffic is for viewing a
 
 The first thing you'll need is a way to proxy the browser traffic to a different local port. While this is usually built into most browsers, you can't easily switch between proxy profiles by default. For this I use [FoxyProxy](https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/) (since I am a Firefox user for now) which lets me quick change my proxy settings previously configured and decide which urls I want to proxy.
 
-<img src="./foxyproxyconfiguration.png" alt="Foxy Proxy Configuration Screenshot" style="width:100%;height:100%;">
+<img src="/content/foxyproxyconfiguration.png" alt="Foxy Proxy Configuration Screenshot" style="width:100%;height:100%;">
 
 
 The comman we will use is "ssh -D localhost:port 
