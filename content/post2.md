@@ -13,20 +13,20 @@ The first thing you'll need is a way to proxy the browser traffic to a different
 <img src="/foxyproxyconfiguration.png" alt="Foxy Proxy Configuration Screenshot" style="width:100%;height:100%;">
 
 
-The comman we will use is "ssh -D localhost:port 
+The command we will use is "ssh -D localhost:port remotehost"
+
 
 ```
--f      Requests ssh to go to background just before command execution.  This is useful if ssh is going to ask for passwords or passphrases, but the user wants it in the
+ -f      Requests ssh to go to background just before command execution.  This is useful if ssh is going to ask for passwords or passphrases, but the user wants it in the
              background.  This implies -n.  The recommended way to start X11 programs at a remote site is with something like ssh -f host xterm.
 
--C      Requests compression of all data (including stdin, stdout, stderr, and data for forwarded X11, TCP and UNIX-domain connections).  The compression algorithm is the
+ -C      Requests compression of all data (including stdin, stdout, stderr, and data for forwarded X11, TCP and UNIX-domain connections).  The compression algorithm is the
              same used by gzip(1).  Compression is desirable on modem lines and other slow connections, but will only slow down things on fast networks.  The default value can
              be set on a host-by-host basis in the configuration files; see the Compression option.
 
--N      Do not execute a remote command.  This is useful for just forwarding ports.  Refer to the description of SessionType in ssh_config(5) for details.
-
-
+ -N      Do not execute a remote command.  This is useful for just forwarding ports.  Refer to the description of SessionType in ssh_config(5) for details.
 ```
+
 
 
 <script data-goatcounter="https://tunneleverything.goatcounter.com/count"
