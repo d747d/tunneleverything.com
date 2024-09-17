@@ -22,7 +22,7 @@ echo "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudf
 ```
 
 Since this will use the Noble release, it won't work when you install cloudflared because there is no Noble package yet! So I went in and changed the release to jammy which does exist.
-<img src="/post3images/cloudflared-service-file.png" alt="Cloudflared Service File" style="width:100%;height:100%;">
+<img src="post3images/cloudflared-service-file.png" alt="Cloudflared Service File" style="width:100%;height:100%;">
 
 Once updated to jammy, you can update and install the package:
 
