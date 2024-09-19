@@ -11,7 +11,7 @@ So I figured I'd give this Cloudflare Tunnel monitoring with Grafana tutorial [h
 
 The first step is to create a tunnel in Cloudflare! This was all done with a free account which is wonderful. To create a tunnel I used the "dashboard" method instead of the cli by following [these](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/create-remote-tunnel/) steps here. 
 
-Then we need to install the cloudflared package on the server we want to expose through the tunnel. I was using Ubuntu Server 24.04 (Noble) which required a little configuration change to get the package working. Here were the steps I followed:
+Then we need to install the cloudflared package on the server we want to expose through the tunnel. I was using Ubuntu Server 24.04 (Noble) which required a little configuration change to get the package working. Here were the steps I followed to install the cloudflared package:
 
 ```
 curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg | sudo tee /usr/share/keyrings/cloudflare-main.gpg >/dev/null
@@ -21,7 +21,9 @@ curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg | sudo tee /usr/share/
 echo "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflared.list
 ```
 
-Since this will use the Noble release, it won't work when you install cloudflared because there is no Noble package yet! So I went in and changed the release to jammy which does exist.
+Since this will use the Noble release, it won't work when you install cloudflared because there is no Noble package yet! So I went in and changed the release to jammy which does exist. You will need to edit the /etc/apt/sources.list.d/cloudflared.list file and replace 'noble' release with 'jammy'
+<img src="/cloudflared-list-change.png" alt="Cloudflared Repo Release file" style="width:100%;height:100%;">
+
 <img src="/cloudflared-service-file.png" alt="Cloudflared Service File" style="width:100%;height:100%;">
 
 Once updated to jammy, you can update and install the package:
@@ -31,8 +33,28 @@ sudo apt-get update && sudo apt-get install cloudflared
 ```
 
 
-Then once cloudflared is installed you can grab the command from "Install and run a connector" section on the Name your tunnel > Install connector page. It will be "sudo cloudflared service install YOURTOKEMHERE" with your unique token for the tunnel.
+Then once cloudflared is installed you can grab the command from "Install and run a connector" section on the Name your tunnel > Install connector page. It will be "sudo cloudflared service install YOURTOKEMNHERE" with your unique token for the tunnel. To run cloudflared as a service, create a service file in /etc/systemd/system/cloudflared.service with these contents:
 
+```
+[Unit]
+Description=cloudflared
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+TimeoutStcs artSec=0
+Type=notify
+ExecStart=/usr/bin/cloudflared --no-autoupdate tunnel --metrics 10.0.200.230:60123 --loglevel debug --logfile /var/log/cloudflared.log run --token YOURTOKENHERE
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+```
+
+It should look like this:
+
+<img src="/cloudflared-service-file.png" alt="Cloudflared service file example" style="width:100%;height:100%">
 
 In the end you should have metrics exporting through Prometheus to be displayed in your Grafana Dashboard
 <img src="/cloudflare-tunnel-dashboard.png" alt="Grafana Dashboard" style="width:100%;height:100%">
