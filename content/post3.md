@@ -22,7 +22,7 @@ echo "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudf
 ```
 
 Since this will use the Noble release, it won't work when you install cloudflared because there is no Noble package yet! So I went in and changed the release to jammy which does exist.
-<img src="cloudflared-service-file.png" alt="Cloudflared Service File" style="width:100%;height:100%;">
+<img src="/cloudflared-service-file.png" alt="Cloudflared Service File" style="width:100%;height:100%;">
 
 Once updated to jammy, you can update and install the package:
 
@@ -35,7 +35,7 @@ Then once cloudflared is installed you can grab the command from "Install and ru
 
 
 In the end you should have metrics exporting through Prometheus to be displayed in your Grafana Dashboard
-<img src="cloudflare-tunnel-dashboard.png" alt="Grafana Dashboard" style="width:100%;height:100%">
+<img src="/cloudflare-tunnel-dashboard.png" alt="Grafana Dashboard" style="width:100%;height:100%">
 
 <script data-goatcounter="https://tunneleverything.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>
