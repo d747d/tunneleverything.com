@@ -32,7 +32,7 @@ sudo apt-get update && sudo apt-get install cloudflared
 ```
 
 
-Then once cloudflared is installed you can grab the command from "Install and run a connector" section on the Name your tunnel > Install connector page. It will be "sudo cloudflared service install YOURTOKEMNHERE" with your unique token for the tunnel. To run cloudflared as a service, create a service file in /etc/systemd/system/cloudflared.service with these contents:
+Then once cloudflared is installed you can grab the command from "Install and run a connector" section on the Name your tunnel > Install connector page. It will be "sudo cloudflared service install YOURTOKENHERE" with your unique token for the tunnel. To run cloudflared as a service, create a service file in /etc/systemd/system/cloudflared.service with these contents:
 
 ```
 [Unit]
@@ -56,7 +56,7 @@ It should look like this:
 <img src="/cloudflared-service-file.png" alt="Cloudflared service file example" style="width:100%;height:100%">
 
 In the end you should have metrics exporting through Prometheus to be displayed in your Grafana Dashboard
-<img src="/cloudflare-tunnel-dashboard.png" alt="Grafana Dashboard" style="width:100%;height:100%">
+<img src="/grafana-final.png" alt="Grafana Dashboard" style="width:100%;height:100%">
 
 <script data-goatcounter="https://tunneleverything.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>
