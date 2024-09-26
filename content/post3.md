@@ -55,6 +55,35 @@ It should look like this:
 
 <img src="/cloudflared-service-file.png" alt="Cloudflared service file example" style="width:100%;height:100%">
 
+Then I installed [Prometheus](https://prometheus.io/download/) onto the same server and added the suggested lines to the bottom of prometheus.yml replacing with my IP target:
+
+```
+  - job_name: "cloudflared"
+    static_configs:
+      - targets: ["198.168.1.1:60123"] ## cloudflared server IP and the --metrics port configured for the tunnel
+```
+
+Then started Prometheus
+
+```
+./prometheus --config.file="prometheus.yml"
+```
+
+Then opened prometheus on port 9090 and confirmed the "cloudflared_tunnel_total_requests" expression showed as a metric.
+
+Then we need to install [Grafana](https://grafana.com/grafana/download).
+
+Started it as a service and checked the status:
+
+```
+sudo systemctl daemon-reload
+sudo systemctl start grafana-server
+sudo systemctl status grafana-server
+```
+
+Then we need to "Add new data source" in Grafana and enter the IP address and port 9090 of our Prometheus server and save. Then go to Dashboards, New Dashboard, and add a visualization. Select Prometheus and you can use the same metric we used before or select others to add to the dashboard.
+
+
 In the end you should have metrics exporting through Prometheus to be displayed in your Grafana Dashboard
 <img src="/grafana-final.png" alt="Grafana Dashboard" style="width:100%;height:100%">
 
