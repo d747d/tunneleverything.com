@@ -15,7 +15,9 @@ The first thing you'll need is a way to proxy the browser traffic to a different
 
 The command we will use is "ssh -D localhost:port remotehost"
 
+In the above FoxyProxy image, our port would be 3333.
 
+Here are some other flags that may be desirable:
 ```
  -f      Requests ssh to go to background just before command execution.  This is useful if ssh is going to ask for passwords or passphrases, but the user wants it in the
              background.  This implies -n.  The recommended way to start X11 programs at a remote site is with something like ssh -f host xterm.
@@ -27,6 +29,7 @@ The command we will use is "ssh -D localhost:port remotehost"
  -N      Do not execute a remote command.  This is useful for just forwarding ports.  Refer to the description of SessionType in ssh_config(5) for details.
 ```
 
+Once you have the SSH session running with the proxy port, enable your FoxyProxy profile and you traffic should be going over the SSH proxy!
 
 
 <script data-goatcounter="https://tunneleverything.goatcounter.com/count"
